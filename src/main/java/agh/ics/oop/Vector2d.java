@@ -1,7 +1,6 @@
 package agh.ics.oop;
 
 import java.security.KeyStore;
-
 public class Vector2d {
     private final int x;
     private final int y;

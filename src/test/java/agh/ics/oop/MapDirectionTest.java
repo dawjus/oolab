@@ -25,7 +25,6 @@ class MapDirectionTest {
         MapDirection previous_west = MapDirection.WEST.previous();
         MapDirection previous_north = MapDirection.NORTH.previous();
         MapDirection previous_east = MapDirection.EAST.previous();
-
         assertEquals(MapDirection.EAST, previous_south);
         assertEquals(MapDirection.SOUTH, previous_west);
         assertEquals(MapDirection.WEST, previous_north);

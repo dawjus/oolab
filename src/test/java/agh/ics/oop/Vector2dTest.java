@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.w3c.dom.ls.LSOutput;
 
 import javax.print.attribute.standard.MediaSize;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
