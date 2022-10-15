@@ -18,7 +18,6 @@ class MapDirectionTest {
         assertEquals(MapDirection.EAST, next_north);
         assertEquals(MapDirection.SOUTH, next_east);
     }
-
     @Test
     void previous() {
         MapDirection previous_south = MapDirection.SOUTH.previous();

@@ -6,7 +6,6 @@ import org.w3c.dom.ls.LSOutput;
 import javax.print.attribute.standard.MediaSize;
 import static org.junit.jupiter.api.Assertions.*;
 
-
 class Vector2dTest {
 
     private final Vector2d v1 = new Vector2d(5, 3);
