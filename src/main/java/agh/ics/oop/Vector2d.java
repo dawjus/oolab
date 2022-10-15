@@ -44,7 +44,6 @@ public class Vector2d {
         Vector2d other_2d = (Vector2d) other;
         return this.x == other_2d.x && this.y == other_2d.y;
     }
-
     @Override
     public String toString(){
         return "(%d, %d)".formatted(x,y);
