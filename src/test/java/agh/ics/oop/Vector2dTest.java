@@ -7,7 +7,7 @@ import javax.print.attribute.standard.MediaSize;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Vector2dTest {
-
+    //given
     private final Vector2d v1 = new Vector2d(5, 3);
     private final Vector2d v2 = new Vector2d(2, 1);
     private final Vector2d v3 = new Vector2d(4,4);
@@ -52,7 +52,7 @@ class Vector2dTest {
     @Test
     void equals(){
         Vector2d v1_copy = new Vector2d(5,3);
-        assertTrue(v1.equals(v1_copy));
+        assertEquals(v1, v1_copy);
     }
 
     @Test

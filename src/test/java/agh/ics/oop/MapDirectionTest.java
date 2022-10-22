@@ -12,7 +12,8 @@ class MapDirectionTest {
         MapDirection next_west = MapDirection.WEST.next();
         MapDirection next_north = MapDirection.NORTH.next();
         MapDirection next_east = MapDirection.EAST.next();
-
+//      MapDirection v1 = MapDirection.East;
+//      assertEquals(MapDirection.South, v1);
         assertEquals(MapDirection.WEST, next_south);
         assertEquals(MapDirection.NORTH, next_west);
         assertEquals(MapDirection.EAST, next_north);
