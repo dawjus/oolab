@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.Map;
 
 public class World {
-    public static void main(String[] args) {
-        Animal animalek = new Animal();
-        MoveDirection[] movements = OptionsParser.parse(args);
-        for(MoveDirection movement: movements) {
-           animalek.move(movement);
-        }
-        System.out.println(animalek);
+    public static void
+    main(String[] args) {
+
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
+
     }
 }

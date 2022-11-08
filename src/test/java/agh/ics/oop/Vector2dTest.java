@@ -7,7 +7,7 @@ import javax.print.attribute.standard.MediaSize;
 import static org.junit.jupiter.api.Assertions.*;
 
 class Vector2dTest {
-    //given
+/*    //given
     private final Vector2d v1 = new Vector2d(5, 3);
     private final Vector2d v2 = new Vector2d(2, 1);
     private final Vector2d v3 = new Vector2d(4,4);
@@ -59,4 +59,6 @@ class Vector2dTest {
     void testToString() {
         assertEquals("(5, 3)", v1.toString());
     }
+
+ */
 }

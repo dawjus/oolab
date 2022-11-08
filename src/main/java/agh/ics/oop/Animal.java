@@ -3,35 +3,46 @@ package agh.ics.oop;
 import java.util.Map;
 import java.util.Objects;
 
-public class Animal {
-    private final Vector2d position = new Vector2d(2,2);
-    private MapDirection orientation = MapDirection.NORTH;
+public class Animal{
+    private Vector2d position;
+    private MapDirection orientation;
+    private IWorldMap map;
+
+    public Animal(){
+        this.orientation =  MapDirection.NORTH;
+        this.position = new Vector2d(2,2);
+    }
+
+    public Animal(IWorldMap map){
+        this.orientation =  MapDirection.NORTH;
+
+    }
+    public Animal(IWorldMap map, Vector2d initialPosition){
+        this.position = initialPosition;
+        this.orientation =  MapDirection.NORTH;
+    }
+
+
     public void move(MoveDirection direction){
-        if (direction==MoveDirection.LEFT){
-            orientation = MapDirection.WEST;
+        Vector2d orientationVector = this.orientation.toUnitVector();
+        Vector2d new_position = position;
+        switch(direction){
+            case RIGHT -> this.orientation = this.orientation.next();
+            case LEFT -> this.orientation = this.orientation.previous();
+            case FORWARD -> new_position = this.position.add(orientationVector);
+            case BACKWARD -> new_position = this.position.substract(orientationVector);
         }
-        else if (direction ==MoveDirection.RIGHT) {
-            orientation = MapDirection.EAST;
-        }
-        else if (direction==MoveDirection.FORWARD  && position.getY()<4) {
-            position.setY(position.getY() +1);
-        }
-        else if (direction==MoveDirection.BACKWARD && position.getY()>0){
-            position.setY(position.getY() -1);
-        }
+     //   if (map.canMoveTo(new_position)){
+      //      this.position = new_position;
+       // }
     }
 
 
-    boolean isAt(Vector2d position){
-        return  this.position.equals(position);
+    public boolean isAt(Vector2d position_check){
+        //return  this.position.equals(position);
+        return Objects.equals(this.position, position_check);
     }
 
-    /* Odp na pytanie 10:
-        Stworzyłbym tablicę w któej trzymałbym wszytskie zwierzątka i funkcją isAt porównywał bym zwierzatko,
-        które chce przesunać (wywołujac funkcje move) z pozostałymi lub tablice dwumiarową o wymiarach planszy dla zwierzaków
-        i wypełnił ją wartościami False, gdyby wykonywała sie funkcja move sprawdzłąym czy dane pole jest False czy True
-        jak True to nie ide jak False to ide i zmieniam pole na True
-     */
     public MapDirection getOrientation() {
         return orientation;
     }
@@ -43,7 +54,13 @@ public class Animal {
 
     @Override
     public String toString(){
-        return "Position: %s \nDirection: %s".formatted(this.position.toString(), this.orientation.toString());
+        //return "Position: %s \nDirection: %s".formatted(this.position.toString(), this.orientation.toString());
+        return switch (this.orientation){
+            case NORTH -> "N";
+            case WEST -> "W";
+            case EAST -> "E";
+            case SOUTH -> "S";
+        };
     }
 
     @Override

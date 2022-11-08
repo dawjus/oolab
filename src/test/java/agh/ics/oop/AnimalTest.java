@@ -11,7 +11,7 @@ class AnimalTest {
     Animal animal3 = new Animal();
     Animal animal4 = new Animal();
 
-
+/*
     @Test
     void move_orientation() {
         animal1.move(MoveDirection.RIGHT);
