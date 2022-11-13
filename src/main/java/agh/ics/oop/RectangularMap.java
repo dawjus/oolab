@@ -9,7 +9,7 @@ public class RectangularMap implements IWorldMap{
     public List<Animal> animals = new ArrayList<>();
     private MapVisualizer mapVisualizer;
     public RectangularMap(int width, int height){
-      //  this.animals = new ArrayList<>();
+        //  this.animals = new ArrayList<>();
         this.mapVisualizer = new MapVisualizer(this);
         this.lowerLeftPoint = new Vector2d(0, 0);
         this.upperRight_point = new Vector2d(width-1, height -1);
@@ -45,15 +45,6 @@ public class RectangularMap implements IWorldMap{
         }
         return null;
     }
-/*
-    @Override
-    public Object objectAt(Vector2d position) {
-        return animals.stream()
-                   .filter(animal -> animal.isAt(position))
-                   .findFirst()
-                   .orElse(null);
-    }
-    */
 
     @Override
     public String toString() {

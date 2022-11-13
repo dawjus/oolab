@@ -39,7 +39,6 @@ public class Animal{
 
 
     public boolean isAt(Vector2d position_check){
-        //return  this.position.equals(position);
         return Objects.equals(this.position, position_check);
     }
 
@@ -54,7 +53,6 @@ public class Animal{
 
     @Override
     public String toString(){
-        //return "Position: %s \nDirection: %s".formatted(this.position.toString(), this.orientation.toString());
         return switch (this.orientation){
             case NORTH -> "N";
             case WEST -> "W";
