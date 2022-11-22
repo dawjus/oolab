@@ -1,17 +1,20 @@
 package agh.ics.oop;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GrassField extends AbstractWorldMap {
-    private int countGrass;
     private final int maxSize;
-    protected List<Grass> grasses = new ArrayList<>();
-    private Vector2d  lowerLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
-    private Vector2d  upperRight = new Vector2d(0,0);
+  //  protected List<Grass> grasses = new ArrayList<>();
+    protected Map<Vector2d, Grass> grasses = new HashMap<Vector2d, Grass>();
     private MapVisualizer map = new MapVisualizer(this);
+
+    protected List<Grass> getGrasses() {
+        return new ArrayList<>(grasses.values());
+    }
     public GrassField(int count) {
-        this.countGrass = count;
         this.maxSize = (int) Math.sqrt(10 * count);
         for (int i =0; i<count; i++) {
             int randX = (int) (Math.random() * maxSize);
@@ -19,20 +22,11 @@ public class GrassField extends AbstractWorldMap {
             Vector2d position = new Vector2d(randX, randY);
             Grass grass = new Grass(position);
             if (!isOccupied(position)) {
-                grasses.add(grass);
+                grasses.put(position, grass);
             }
         }
     }
 
-    @Override
-    public boolean isOccupied(Vector2d position) {
-        for (Grass grass : grasses) {
-            if (grass.getPosition().equals(position)) {
-                return true;
-            }
-        }
-        return super.isOccupied(position);
-    }
 
     @Override
     public Object objectAt(Vector2d position) {
@@ -40,20 +34,24 @@ public class GrassField extends AbstractWorldMap {
         if (object != null) {
             return object;
         }
-        for (Grass grass : grasses) {
+        for (Grass grass : getGrasses()) {
             if (grass.getPosition().equals(position)) {
                 return grass;
             }
         }
         return null;
     }
-
+    @Override
+    public boolean isOccupied(Vector2d position) {
+        return grasses.containsKey(position) || super.isOccupied(position);
+    }
     @Override
     public Vector2d getLowerLeft() {
-        for (Animal animal : animals) {
+        Vector2d  lowerLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
+        for (Animal animal : getAnimals()) {
             lowerLeft = lowerLeft.lowerLeft(animal.getPosition());
         }
-        for (Grass grass : grasses) {
+        for (Grass grass : getGrasses()) {
             lowerLeft = lowerLeft.lowerLeft(grass.getPosition());
         }
         return lowerLeft;
@@ -61,10 +59,11 @@ public class GrassField extends AbstractWorldMap {
 
     @Override
     public Vector2d getUpperRight() {
-        for (Animal animal : animals) {
+        Vector2d  upperRight = new Vector2d(0,0);
+        for (Animal animal : getAnimals()) {
             upperRight = upperRight.upperRight(animal.getPosition());
         }
-        for (Grass grass : grasses) {
+        for (Grass grass : getGrasses()) {
             upperRight = upperRight.upperRight(grass.getPosition());
         }
         return upperRight;
