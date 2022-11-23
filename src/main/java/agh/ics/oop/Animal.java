@@ -9,37 +9,36 @@ public class Animal{
     private IWorldMap map;
 
     public Animal(){
-        this.orientation =  MapDirection.NORTH;
-        this.position = new Vector2d(2,2);
+        this(null);
     }
 
     public Animal(IWorldMap map){
-        this.orientation =  MapDirection.NORTH;
-
+        this(map, new Vector2d(2,2));
     }
+
     public Animal(IWorldMap map, Vector2d initialPosition){
         this.position = initialPosition;
         this.orientation =  MapDirection.NORTH;
+        this.map = map;
     }
 
 
     public void move(MoveDirection direction){
         Vector2d orientationVector = this.orientation.toUnitVector();
-        Vector2d new_position = position;
+        Vector2d newPosition = position;
         switch(direction){
             case RIGHT -> this.orientation = this.orientation.next();
             case LEFT -> this.orientation = this.orientation.previous();
-            case FORWARD -> new_position = this.position.add(orientationVector);
-            case BACKWARD -> new_position = this.position.substract(orientationVector);
+            case FORWARD -> newPosition = this.position.add(orientationVector);
+            case BACKWARD -> newPosition = this.position.substract(orientationVector);
         }
-     //   if (map.canMoveTo(new_position)){
-      //      this.position = new_position;
-       // }
+        if (map.canMoveTo(newPosition)){
+            this.position = newPosition;
+        }
     }
 
 
     public boolean isAt(Vector2d position_check){
-        //return  this.position.equals(position);
         return Objects.equals(this.position, position_check);
     }
 
@@ -54,7 +53,6 @@ public class Animal{
 
     @Override
     public String toString(){
-        //return "Position: %s \nDirection: %s".formatted(this.position.toString(), this.orientation.toString());
         return switch (this.orientation){
             case NORTH -> "N";
             case WEST -> "W";
