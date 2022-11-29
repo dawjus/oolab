@@ -1,7 +1,5 @@
 package agh.ics.oop;
 
-import com.sun.jdi.Value;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,12 +35,11 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
         Vector2d animalPosition = animal.getPosition();
         if (canMoveTo(animalPosition)) {
             animals.put(animal.getPosition(), animal);
+            animal.addObserver(this);
             return true;
         }
         return false;
     }
-
-
 
     @Override
     public Object objectAt(Vector2d position) {
@@ -52,8 +49,9 @@ abstract class AbstractWorldMap implements IWorldMap, IPositionChangeObserver {
 
 
     public void positionChanged(Vector2d oldPosition, Vector2d newPosition) {
-        for (IPositionChangeObserver observer : observers) {
-            observer.positionChanged(oldPosition, newPosition);
+        if (!newPosition.equals(oldPosition)) {
+            Animal animal = animals.remove(oldPosition);
+            animals.put(newPosition, animal);
         }
     }
     public String toString() {

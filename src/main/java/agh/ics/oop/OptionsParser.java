@@ -9,6 +9,9 @@ public class OptionsParser {
                     direction.equals("right") || direction.equals("r")) {
                 counter += 1;
             }
+            else{
+                throw new IllegalArgumentException(direction + " is not legal move specification");
+            }
         }
         MoveDirection[] movements = new MoveDirection[counter];
         int k = 0;

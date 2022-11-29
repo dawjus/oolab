@@ -48,10 +48,10 @@ public class GrassField extends AbstractWorldMap {
     @Override
     public Vector2d getLowerLeft() {
         Vector2d  lowerLeft = new Vector2d(Integer.MAX_VALUE, Integer.MAX_VALUE);
-        for (Animal animal : getAnimals()) {
+        for (Animal animal : animals.values()) {
             lowerLeft = lowerLeft.lowerLeft(animal.getPosition());
         }
-        for (Grass grass : getGrasses()) {
+        for (Grass grass : grasses.values()) {
             lowerLeft = lowerLeft.lowerLeft(grass.getPosition());
         }
         return lowerLeft;
@@ -60,8 +60,8 @@ public class GrassField extends AbstractWorldMap {
     @Override
     public Vector2d getUpperRight() {
         Vector2d  upperRight = new Vector2d(0,0);
-        for (Animal animal : getAnimals()) {
-            upperRight = upperRight.upperRight(animal.getPosition());
+        for (Vector2d position : animals.keySet()) {
+            upperRight = upperRight.upperRight(position);
         }
         for (Grass grass : getGrasses()) {
             upperRight = upperRight.upperRight(grass.getPosition());

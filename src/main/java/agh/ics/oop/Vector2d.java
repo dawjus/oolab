@@ -6,6 +6,8 @@ public class Vector2d {
     protected int x;
     protected int y;
 
+
+
     public Vector2d(int x, int y) {
         this.x = x;
         this.y = y;
@@ -39,6 +41,14 @@ public class Vector2d {
         return new Vector2d(-x, -y);
     }
 
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -56,6 +66,7 @@ public class Vector2d {
     public String toString() {
         return "(%d, %d)".formatted(x, y);
     }
+
 }
 
 
