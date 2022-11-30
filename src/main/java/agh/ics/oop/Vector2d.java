@@ -39,21 +39,6 @@ public class Vector2d {
         return new Vector2d(-x, -y);
     }
 
-
-    /*
-    public boolean equals(Object other){
-        if (this == other)
-            return true;
-        if (!(other instanceof Vector2d))
-            return false;
-        Vector2d other_2d = (Vector2d) other;
-        return this.x == other_2d.x && this.y == other_2d.y;
-        //return this.x ==((Vector2d other).x && this.y == ((Vector2d) other).y);
-    }
-    @Override
-    public int hashCode(){return Objects.hash(x,y);}
- */
-
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;

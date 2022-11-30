@@ -1,7 +1,6 @@
 package agh.ics.oop;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class RectangularMap implements IWorldMap{
     public final Vector2d lowerLeftPoint;
@@ -9,7 +8,6 @@ public class RectangularMap implements IWorldMap{
     public List<Animal> animals = new ArrayList<>();
     private MapVisualizer mapVisualizer;
     public RectangularMap(int width, int height){
-        //  this.animals = new ArrayList<>();
         this.mapVisualizer = new MapVisualizer(this);
         this.lowerLeftPoint = new Vector2d(0, 0);
         this.upperRight_point = new Vector2d(width-1, height -1);
@@ -31,10 +29,6 @@ public class RectangularMap implements IWorldMap{
         return false;
     }
 
-    @Override
-    public boolean isOccupied(Vector2d position) {
-        return objectAt(position)!= null;
-    }
 
     @Override
     public Object objectAt(Vector2d position) {
